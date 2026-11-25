@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>9ET0/03 Paper 3 Poetry — 90-Min A* Triage</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="top-bar" aria-label="Sprint header">
+    <div class="top-bar__brand">
+      <span class="brand-badge">9ET0/03</span>
+      <div class="brand-meta">
+        <span class="brand-title">Paper 3 A* Triage</span>
+        <span class="brand-sub" id="readiness-label">Readiness: 0%</span>
+      </div>
+    </div>
+
+    <div class="top-bar__actions">
+      <button type="button" class="pill-btn timer-btn" id="timer-toggle" aria-label="Start or pause 90-minute sprint timer">
+        <span aria-hidden="true">⏱</span>
+        <span id="timer-display">90:00</span>
+      </button>
+      <button type="button" class="pill-btn" popovertarget="glossary-popover" aria-label="Open searchable Winny Middle English glossary">
+        📖 Glossary
+      </button>
+      <button type="button" class="pill-btn icon-only" id="theme-toggle" aria-label="Toggle light or dark mode" title="Toggle light/dark mode">
+        ☀️
+      </button>
+    </div>
+
+    <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="readiness-bar">
+      <div class="progress-fill" id="readiness-fill"></div>
+    </div>
+  </header>
+
+  <!-- Native Popover: Searchable Winny Middle English Glossary -->
+  <aside id="glossary-popover" popover aria-label="Winny Middle English Glossary">
+    <div class="popover-head">
+      <div>
+        <h2 class="popover-title">Winny Middle English Glossary</h2>
+        <p class="popover-sub">230+ words from Cambridge Winny (pp. 135–153)</p>
+      </div>
+      <button type="button" class="pill-btn" popovertarget="glossary-popover" popovertargetaction="hide" aria-label="Close glossary">✕ Close</button>
+    </div>
+    <label class="sr-only" for="glossary-search">Search Middle English word or meaning</label>
+    <input type="search" id="glossary-search" class="search-input" placeholder="Type any ME word (e.g. woot, queynte, maistrie, but)..." autocomplete="off">
+    <p class="glossary-count" id="glossary-count"></p>
+    <div class="glossary-list" id="glossary-list"></div>
+  </aside>
+
+  <main class="app-main" id="app-main">
+    <!-- TAB 1: MISSION CONTROL / 90-MIN SPRINT -->
+    <section id="tab-sprint" class="tab-panel active" aria-labelledby="heading-sprint">
+      <div class="hero-card">
+        <div class="hero-eyebrow">Chaucer-Heavy Triage • Open Book (Clean Text)</div>
+        <h1 id="heading-sprint">90-Minute P(High Marks) → 1</h1>
+        <p class="hero-desc">
+          You already know how to write A* essays and Chaucer’s context. This sprint fixes the two remaining bottlenecks: <strong>Middle English comprehension</strong> (60 min) and <strong>Poems of the Decade unlocks</strong> (30 min).
+        </p>
+        <div class="metric-grid" id="hero-metrics"></div>
+      </div>
+
+      <section class="section-block" aria-labelledby="roadmap-heading">
+        <h2 id="roadmap-heading">Tonight’s 4-Block Game Plan</h2>
+        <div class="roadmap-list" id="roadmap-list"></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="exam-card-heading">
+        <h2 id="exam-card-heading">Tomorrow’s Exam-Room Strategy (2h 15m)</h2>
+        <div class="two-col">
+          <article class="info-card">
+            <div class="card-tag tag-poem">Section A • 30 Marks • ~65 min</div>
+            <h3>Post-2000 + Unseen Comparison</h3>
+            <ul class="tight-list">
+              <li><strong>Assesses:</strong> AO1, AO2, AO4 <strong>ONLY</strong>. <span class="warn-text">Do NOT write AO3 context!</span></li>
+              <li><strong>Choice:</strong> 1 Unseen poem paired with <strong>2 named poems</strong>. Pick the 1 you know best.</li>
+              <li><strong>Structure:</strong> Integrate both poems in every paragraph (theme → unseen quote/AO2 → anthology quote/AO2 → link).</li>
+            </ul>
+          </article>
+          <article class="info-card">
+            <div class="card-tag tag-chaucer">Section B • 30 Marks • ~65 min</div>
+            <h3>Wife of Bath’s Prologue &amp; Tale</h3>
+            <ul class="tight-list">
+              <li><strong>Assesses:</strong> AO1, AO2, AO3 <strong>ONLY</strong> (no comparison needed).</li>
+              <li><strong>Choice:</strong> 2 questions; each gives a <strong>printed ~35-line extract</strong> + requires <strong>1 other extract</strong> of similar length from your clean book.</li>
+              <li><strong>Secret Weapon:</strong> If the printed extract has hard words, decode verbs/negatives using the 5 Hacks, then anchor your essay on one of your 10 mastered Passages.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <!-- TAB 2: ROSETTA STONE / MIDDLE ENGLISH DECODER -->
+    <section id="tab-rosetta" class="tab-panel" aria-labelledby="heading-rosetta" hidden>
+      <div class="panel-head">
+        <h1 id="heading-rosetta">Middle English Decoder</h1>
+        <p class="panel-sub">Block 1 (12 min): Master the 5 grammar shortcuts &amp; 40 high-frequency words so any unseen passage on tomorrow’s paper becomes readable.</p>
+      </div>
+
+      <section class="section-block" aria-labelledby="hacks-heading">
+        <h2 id="hacks-heading">The 5 Instant Decoding Hacks</h2>
+        <div class="hacks-grid" id="hacks-grid"></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="flash-heading">
+        <div class="section-row">
+          <h2 id="flash-heading">40-Word Active-Recall Drill</h2>
+          <span class="badge-pill" id="rosetta-score-badge">0 / 40 Cleared</span>
+        </div>
+        <div class="chip-row" id="rosetta-set-tabs" role="tablist" aria-label="Flashcard sets"></div>
+        <div class="flashcard-stage" id="flashcard-stage"></div>
+      </section>
+    </section>
+
+    <!-- TAB 3: CHAUCER ANCHOR PASSAGES -->
+    <section id="tab-chaucer" class="tab-panel" aria-labelledby="heading-chaucer" hidden>
+      <div class="panel-head">
+        <h1 id="heading-chaucer">10 Universal Chaucer Passages</h1>
+        <p class="panel-sub">Block 2 (33 min): Verbatim text &amp; page numbers from your James Winny (2016) edition. Tap any dotted word for an instant Winny gloss.</p>
+      </div>
+
+      <div class="sticky-controls">
+        <div class="mode-switch" role="group" aria-label="Middle English reading mode">
+          <button type="button" class="mode-btn active" data-reading-mode="tap">Tap-to-Gloss</button>
+          <button type="button" class="mode-btn" data-reading-mode="side">Side-by-Side</button>
+          <button type="button" class="mode-btn" data-reading-mode="exam">Exam Sim (Clean)</button>
+        </div>
+        <div class="filter-scroll" id="chaucer-theme-filters" role="group" aria-label="Filter passages by exam theme"></div>
+      </div>
+
+      <div class="live-gloss-banner" id="live-gloss-banner" aria-live="polite">
+        <span class="gloss-hint">Tip: Tap any <span class="dotted-demo">underlined</span> Middle English word below to see its exact Winny translation.</span>
+      </div>
+
+      <div class="passages-list" id="passages-list"></div>
+
+      <section class="section-block" aria-labelledby="beats-heading">
+        <h2 id="beats-heading">Full 1,264-Line Plot &amp; Page Navigator</h2>
+        <p class="panel-sub">If tomorrow’s printed extract falls outside the 10 anchor passages, check which beat it sits in here:</p>
+        <div class="accordion" id="beats-accordion"></div>
+      </section>
+    </section>
+
+    <!-- TAB 4: POEMS OF THE DECADE SPRINT -->
+    <section id="tab-poems" class="tab-panel" aria-labelledby="heading-poems" hidden>
+      <div class="panel-head">
+        <div class="section-row">
+          <h1 id="heading-poems">Poems of the Decade Triage</h1>
+          <div class="prob-pill" id="poem-prob-pill" title="Exact probability that at least 1 of the 2 exam poem choices is one you have mastered">
+            P(≥1 Hit): <strong id="poem-prob-value">0%</strong>
+          </div>
+        </div>
+        <p class="panel-sub">Block 4 (30 min): Master the <strong>Top 14 Priority Poems</strong> first (92.1% probability at least 1 appears). Use the 6 Morning Backups to lock in 100%. <em>Remember: NO AO3 context in Section A!</em></p>
+      </div>
+
+      <div class="sticky-controls">
+        <div class="mode-switch" role="group" aria-label="Poem study mode">
+          <button type="button" class="mode-btn active" id="poems-study-btn">Study Mode</button>
+          <button type="button" class="mode-btn" id="poems-recall-btn">Test Me (Hide Notes)</button>
+        </div>
+        <div class="filter-scroll" id="poem-cluster-filters" role="group" aria-label="Filter poems by theme cluster"></div>
+      </div>
+
+      <section class="section-block" aria-labelledby="tier1-heading">
+        <div class="section-row">
+          <h2 id="tier1-heading">Tier 1: Top 14 Priority Sprint (Target: 92.1%)</h2>
+          <span class="badge-pill" id="tier1-count">0 / 14</span>
+        </div>
+        <div class="poems-grid" id="poems-tier1"></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="tier2-heading">
+        <h2 id="tier2-heading">Tier 2: 6 Morning Backup Poems (Pushes to 100%)</h2>
+        <details class="backup-drawer">
+          <summary><span class="summary-title">Open 6 Morning Backup Poems (5-minute scan → 100% guarantee)</span></summary>
+          <div class="drawer-body">
+            <div class="poems-grid" id="poems-tier2"></div>
+          </div>
+        </details>
+      </section>
+    </section>
+
+    <!-- TAB 5: PAST PAPER PATTERNS & EXAM SIMULATOR -->
+    <section id="tab-drills" class="tab-panel" aria-labelledby="heading-drills" hidden>
+      <div class="panel-head">
+        <h1 id="heading-drills">Past-Paper Pattern Simulator</h1>
+        <p class="panel-sub">Block 3 (15 min): Practice choosing the highest-scoring 2nd extract on 14 real 2017–2025 Edexcel Chaucer questions + 6 Section A unseen comparison blueprints.</p>
+      </div>
+
+      <section class="section-block" aria-labelledby="chaucer-drill-heading">
+        <div class="section-row">
+          <h2 id="chaucer-drill-heading">Section B: 2017–2025 Chaucer Extract Matcher</h2>
+          <span class="badge-pill" id="drill-score-badge">0 / 14 Nailed</span>
+        </div>
+        <div class="drills-list" id="chaucer-drills-list"></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="sectiona-drill-heading">
+        <h2 id="sectiona-drill-heading">Section A: Unseen Comparison Rapid Blueprints</h2>
+        <div class="drills-list" id="sectiona-drills-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Primary navigation">
+    <button type="button" class="nav-btn active" data-tab="tab-sprint" aria-current="page">
+      <span class="nav-icon" aria-hidden="true">🎯</span>
+      <span class="nav-label">Sprint</span>
+    </button>
+    <button type="button" class="nav-btn" data-tab="tab-rosetta">
+      <span class="nav-icon" aria-hidden="true">🔑</span>
+      <span class="nav-label">Rosetta</span>
+    </button>
+    <button type="button" class="nav-btn" data-tab="tab-chaucer">
+      <span class="nav-icon" aria-hidden="true">📜</span>
+      <span class="nav-label">Chaucer</span>
+    </button>
+    <button type="button" class="nav-btn" data-tab="tab-poems">
+      <span class="nav-icon" aria-hidden="true">✨</span>
+      <span class="nav-label">20 Poems</span>
+    </button>
+    <button type="button" class="nav-btn" data-tab="tab-drills">
+      <span class="nav-icon" aria-hidden="true">⚡</span>
+      <span class="nav-label">Past Papers</span>
+    </button>
+  </nav>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
